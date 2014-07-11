@@ -10,6 +10,9 @@ parameter_groups:
   - flavor
   - image
 
+- label: MySQL Settings
+  - slave_count
+
 - label: rax-dev-params
   parameters:
   - master_hostname
@@ -76,6 +79,12 @@ parameters:
         Must be a valid Rackspace Cloud Server flavor for the region you have
         selected to deploy into.
 
+  slave_count:
+    label: Slave Nodes
+    description: Number of slave nodes to tie into the MySQL Master server
+    type: number
+    default: 1
+
   kitchen:
     label: Kitchen
     description: URL for the kitchen to use
@@ -88,7 +97,7 @@ parameters:
     type: string
     default: 11.12.8
 
-  slave_template:
+  child_template:
     label: Slave Template
     description: Template to use for all Slave Nodes
     type: string
@@ -143,8 +152,49 @@ resources:
           server_root_password: { get_attr: [mysql_root_password, value] }
           server_debian_password: { get_attr: [mysql_debian_password, value] }
           server_repl_password: { get_attr: [mysql_repl_password, value] }
-        run_list: ["recipe[mysql-multi::mysql_master]"]
+          root_network_acl: ['127.0.0.1', 'localhost']
+        run_list: ["recipe[apt]",
+                   "recipe[mysql::server]",
+                   "recipe[mysql-multi::mysql_master]"]
 
+  slave_nodes:
+    type: "OS::Heat::ResourceGroup"
+    depends_on: master_server_setup
+    properties:
+      count: { get_param: slave_count }
+      resource_def:
+        type: { get_param: child_template }
+        properties:
+          image: { get_param: image }
+          flavor: { get_param: flavor }
+          master: { get_attr: [master_server, privateIPv4] }
+          ssh_keypair_name: { get_resource: ssh_key }
+          ssh_private_key: { get_attr: [ssh_key, private_key] }
+          ssh_public_key: { get_attr: [ssh_key, public_key] }
+          kitchen: { get_param: kitchen }
+          chef_version: { get_param: chef_version }
+          parent_stack_id: { get_param: "OS::stack_id" }
+
+  master_slave_grants:
+    type: "OS::Heat::ChefSolo"
+    depends_on: slave_nodes
+    properties:
+      username: root
+      private_key: { get_attr: [ssh_key, private_key] }
+      host: { get_attr: [master_server, accessIPv4] }
+      kitchen: { get_param: kitchen }
+      chef_version: { get_param: chef_version }
+      node:
+        mysql:
+          server_root_password: { get_attr: [mysql_root_password, value] }
+          server_debian_password: { get_attr: [mysql_debian_password, value] }
+          server_repl_password: { get_attr: [mysql_repl_password, value] }
+          root_network_acl: ['127.0.0.1', 'localhost']
+        mysql-multi:
+          slaves: { get_attr: [slave_nodes, privateIPv4] }
+        run_list: ["recipe[apt]",
+                   "recipe[mysql::server]",
+                   "recipe[mysql-multi::mysql_master]"]
 outputs:
   private_key:
     description: SSH Private Key
