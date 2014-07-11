@@ -21,7 +21,7 @@ parameters:
 
   master_hostname:
     label: Server Hostname
-    description: Host name to give the Chef Server
+    description: Host name to give the Master Server
     type: string
     default: mysql-master
     constraints:
@@ -135,7 +135,7 @@ resources:
     properties:
       username: root
       private_key: { get_attr: [ssh_key, private_key] }
-      host: { get_attr: [chef_server, accessIPv4] }
+      host: { get_attr: [master_server, accessIPv4] }
       kitchen: { get_param: kitchen }
       chef_version: { get_param: chef_version }
       node:
