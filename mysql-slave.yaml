@@ -98,7 +98,7 @@ resources:
       name: { get_param: slave_hostnames }
       flavor: { get_param: flavor }
       image: { get_param: image }
-      key_name: { get_resource: ssh_key }
+      key_name: { get_param: ssh_keypair_name }
       metadata:
         rax-heat: { get_param: parent_stack_id }
 
