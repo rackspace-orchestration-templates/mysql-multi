@@ -1,0 +1,39 @@
+schema-version: 1.0.0
+application-family: Databases
+application-name: MySQL
+application-version: latest
+flavor: Multiple Linux Servers running MySQL 5.5 with replication
+flavor-weight: 1
+reach-info:
+  tattoo: https://0b5294b243620310a700-e388a7f3aba385a925111b1fc6f680d4.ssl.cf2.rackcdn.com/mysql-tattoo.png
+  icon-20x20: https://0b5294b243620310a700-e388a7f3aba385a925111b1fc6f680d4.ssl.cf2.rackcdn.com/mysql-icon-20x20.png
+hidden_outputs:
+  - private_key
+abstract: |
+  Multiple Linux servers with [MySQL 5.5](http://www.mysql.com/) and local
+  database backups configured on the Master node with
+  [Holland](https://github.com/holland-backup/holland#readme).
+instructions: |
+  #### Getting Started
+  If you're new to MySQL, the [Getting Started with
+  MySQL](http://dev.mysql.com/tech-resources/articles/mysql_intro.html)
+  documentation will step you through the basics of configuration, user, and
+  permission management.
+
+  As a part of your server configuration, your server will be configured to run
+  nightly backups leveraging
+  [Holland](https://github.com/holland-backup/holland#readme).  Backups will be
+  stored in the directory /var/lib/mysqlbackups directory on the master node.
+
+  #### Logging in via SSH
+  The private key provided in the passwords section can be used to login as
+  root via SSH. We have an article on how to use these keys with [Mac OS X and
+  Linux](http://www.rackspace.com/knowledge_center/article/logging-in-with-a-ssh-private-key-on-linuxmac)
+  as well as [Windows using
+  PuTTY](http://www.rackspace.com/knowledge_center/article/logging-in-with-a-ssh-private-key-on-windows).
+
+  #### Additional Notes
+  All write operations should be performed on the Master node. Read operations
+  can be performed against any servers in this deployment. By default, all new
+  and existing databases will be replicated across the members of this
+  deployment.

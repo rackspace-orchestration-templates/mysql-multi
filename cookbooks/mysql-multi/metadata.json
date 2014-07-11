@@ -1,0 +1,32 @@
+{
+  "name": "mysql-multi",
+  "version": "1.2.0",
+  "description": "MySQL replication wrapper cookbook",
+  "long_description": "mysql-multi\n===========\n\nChef wrapper cookbook to create master/slave MySQL server setups. This wrapper\nshould work on all Debian and RHEL platform family OS's.\n\nUtilization\n------------\n\nCookbook works as a wrapper around the community MySQL cookbook to allow for\nthe creation of master/slave and master/multi-slave MySQL systems.\n\nThe cookbook utilizes two recipes depending on the server's role.\n\n`mysql_master.rb` : sets up a master MySQL server and creates replicant users\nfor each slave node definded within attributes.\n\nSearch will look for the node(s) in the same environment with the tag\n`mysql_slave` and grant the allowed replicating node(s). If you do not want to\nuse search, create the slave node(s) first before bootstrapping, and set the\nattribute `['mysql-multi']['master']` with the correct IP array.\n\n`mysql_slave.rb` : sets up a slave MySQL server pointing to the master node\ndefinded within attributes.\n\nSearch will look for the node in the same environment with the tag\n`mysql_master` and set master replication to that node. If you do not want to\nuse search, create the master node first before bootstrapping, and set the\nattribute `['mysql-multi']['master']` with the correct IP.\n\nAttributes\n-----------\n\n`['mysql-multi']['master']` : sets the IP address that defines the master node\n\n`['mysql-multi']['slaves']` : is any array that defines the IP address(es) of\nthe slave node(s).\n\n`['mysql-multi']['slave_user']` : allows for the setting of a custom name for\nthe slave MySQL user, by default it is set to 'replicant'.\n\n`['mysql-multi']['server_repl_password']` : is set to match\n`['mysql']['server_repl_password']` just to keep attribute names uniform\nthroughout this cookbook.\n\n`['mysql-multi']['bind_ip']` is an override for the logic that determines the\nbest `bind_address` for mysql. Allowing you to set it to whatever is needed for\nyour specific configuration.\n\nLicense & Authors\n-----------------\n- Author:: Christopher Coffey (<christopher.coffey@rackspace.com>)\n- Author:: Brint O'Hearn (<brint.ohearn@rackspace.com>)\n- Author:: BK Box (<bk@theboxes.org>)\n\n```text\n\nCopyright:: 2014 Rackspace US, Inc\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n```\n",
+  "maintainer": "Christopher Coffey",
+  "maintainer_email": "christopher.coffey@rackspace.com",
+  "license": "Apache 2.0",
+  "platforms": {
+  },
+  "dependencies": {
+    "mysql": ">= 0.0.0",
+    "apt": ">= 0.0.0",
+    "chef-sugar": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  }
+}
