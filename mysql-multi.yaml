@@ -11,6 +11,7 @@ parameter_groups:
   - image
 
 - label: MySQL Settings
+  parameters:
   - slave_count
 
 - label: rax-dev-params
