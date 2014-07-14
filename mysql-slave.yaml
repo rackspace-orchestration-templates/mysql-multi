@@ -67,6 +67,9 @@ parameters:
   mysql_repl_password:
     type: string
 
+  mysql_debian_password:
+    type: string
+
   master:
     type: string
     description: MySQL master server
@@ -86,12 +89,6 @@ parameters:
     type: string
 
 resources:
-  mysql_debian_password:
-    type: "OS::Heat::RandomString"
-    properties:
-      length: 16
-      sequence: lettersdigits
-
   slave_server:
     type: "Rackspace::Cloud::Server"
     properties:
@@ -114,7 +111,7 @@ resources:
       node:
         mysql:
           server_root_password: { get_param: mysql_root_password }
-          server_debian_password: { get_attr: [mysql_debian_password, value] }
+          server_debian_password: { get_param: mysql_debian_password }
           server_repl_password: { get_param: mysql_repl_password }
           root_network_acl: ['127.0.0.1', 'localhost']
         mysql-multi:

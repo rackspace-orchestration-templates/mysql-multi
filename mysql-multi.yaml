@@ -177,6 +177,7 @@ resources:
           master: { get_attr: [master_server, privateIPv4] }
           mysql_root_password: { get_attr: [mysql_root_password, value] }
           mysql_repl_password: { get_attr: [mysql_repl_password, value] }
+          mysql_debian_password: { get_attr: [mysql_debian_password, value] }
           ssh_keypair_name: { get_resource: ssh_key }
           ssh_private_key: { get_attr: [ssh_key, private_key] }
           ssh_public_key: { get_attr: [ssh_key, public_key] }
