@@ -124,7 +124,8 @@ resources:
             tcp: 3306
         run_list: ["recipe[apt]",
                    "recipe[mysql::server]",
-                   "recipe[mysql-multi::mysql_slave]"]
+                   "recipe[mysql-multi::mysql_slave]",
+                   "recipe[rax-firewall]"]
 
 outputs:
   privateIPv4:

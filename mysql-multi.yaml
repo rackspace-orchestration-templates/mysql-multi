@@ -200,7 +200,8 @@ resources:
             tcp: 3306
         run_list: ["recipe[apt]",
                    "recipe[mysql::server]",
-                   "recipe[mysql-multi::mysql_master]"]
+                   "recipe[mysql-multi::mysql_master]",
+                   "recipe[rax-firewall]"]
 outputs:
   private_key:
     description: SSH Private Key
