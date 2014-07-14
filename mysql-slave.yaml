@@ -117,7 +117,7 @@ resources:
           server_debian_password: { get_attr: [mysql_debian_password, value] }
           server_repl_password: { get_param: mysql_repl_password }
           root_network_acl: ['127.0.0.1', 'localhost']
-        mysql-mutli:
+        mysql-multi:
           master: { get_param: master }
         rax:
           firewall:
