@@ -150,6 +150,13 @@ resources:
       kitchen: { get_param: kitchen }
       chef_version: { get_param: chef_version }
       node:
+        hollandbackup:
+          main:
+            backup_directory: "/var/lib/mysqlbackup"
+            mysqldump:
+              user: "root"
+              host: "localhost"
+              password: { get_attr: [mysql_root_password, value] }
         mysql:
           server_root_password: { get_attr: [mysql_root_password, value] }
           server_debian_password: { get_attr: [mysql_debian_password, value] }
