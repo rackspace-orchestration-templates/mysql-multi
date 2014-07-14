@@ -154,9 +154,14 @@ resources:
           server_debian_password: { get_attr: [mysql_debian_password, value] }
           server_repl_password: { get_attr: [mysql_repl_password, value] }
           root_network_acl: ['127.0.0.1', 'localhost']
+        rax:
+          firewall:
+            tcp:
+              - 3306
         run_list: ["recipe[apt]",
                    "recipe[mysql::server]",
-                   "recipe[mysql-multi::mysql_master]"]
+                   "recipe[mysql-multi::mysql_master]",
+                   "recipe[rax-firewall]"]
 
   slave_nodes:
     type: "OS::Heat::ResourceGroup"
