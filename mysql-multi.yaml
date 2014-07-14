@@ -162,7 +162,12 @@ resources:
         run_list: ["recipe[apt]",
                    "recipe[mysql::server]",
                    "recipe[mysql-multi::mysql_master]",
-                   "recipe[rax-firewall]"]
+                   "recipe[rax-firewall]",
+                   "recipe[hollandbackup]",
+                   "recipe[hollandbackup::mysqldump]",
+                   "recipe[hollandbackup::main]",
+                   "recipe[hollandbackup::backupsets]",
+                   "recipe[hollandbackup::cron]"]
 
   slave_nodes:
     type: "OS::Heat::ResourceGroup"
