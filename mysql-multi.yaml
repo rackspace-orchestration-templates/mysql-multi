@@ -198,7 +198,8 @@ resources:
           slaves: { get_attr: [slave_nodes, privateIPv4] }
         rax:
           firewall:
-            tcp: 3306
+            tcp:
+              - 3306
         run_list: ["recipe[apt]",
                    "recipe[mysql::server]",
                    "recipe[mysql-multi::mysql_master]",

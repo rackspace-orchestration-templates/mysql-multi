@@ -121,7 +121,8 @@ resources:
           master: { get_param: master }
         rax:
           firewall:
-            tcp: 3306
+            tcp:
+              - 3306
         run_list: ["recipe[apt]",
                    "recipe[mysql::server]",
                    "recipe[mysql-multi::mysql_slave]",
