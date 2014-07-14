@@ -195,6 +195,9 @@ resources:
           root_network_acl: ['127.0.0.1', 'localhost']
         mysql-multi:
           slaves: { get_attr: [slave_nodes, privateIPv4] }
+        rax:
+          firewall:
+            tcp: 3306
         run_list: ["recipe[apt]",
                    "recipe[mysql::server]",
                    "recipe[mysql-multi::mysql_master]"]
