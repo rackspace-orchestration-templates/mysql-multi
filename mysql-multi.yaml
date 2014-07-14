@@ -166,6 +166,7 @@ resources:
       resource_def:
         type: { get_param: child_template }
         properties:
+          slave_hostname: mysql-slave-%index%
           image: { get_param: image }
           flavor: { get_param: flavor }
           master: { get_attr: [master_server, privateIPv4] }
