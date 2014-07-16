@@ -103,7 +103,7 @@ parameters:
     label: Slave Template
     description: Template to use for all Slave Nodes
     type: string
-    default: https://raw.githubusercontent.com/rackspace-orchestration-templates/mysql-multi/master/recipes/mysql-slave.rb
+    default: https://raw.githubusercontent.com/rackspace-orchestration-templates/mysql-multi/master/mysql-slave.yaml
 
 resources:
   mysql_root_password:
