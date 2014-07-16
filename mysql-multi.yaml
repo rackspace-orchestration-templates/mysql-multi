@@ -20,6 +20,7 @@ parameter_groups:
   - slave_hostnames
   - kitchen
   - chef_version
+  - child_template
 
 parameters:
 
