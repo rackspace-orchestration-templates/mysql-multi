@@ -229,8 +229,12 @@ outputs:
     value: { get_attr: [ssh_key, private_key] }
 
   server_ip:
-    description: Server IP
+    description: Master Server IP
     value: { get_attr: [master_server, accessIPv4] }
+
+  slave_ips:
+    description: Slave Node IPs
+    value: { get_attr: [slave_nodes, accessIPv4] }
 
   mysql_root_password:
     description: MySQL Root Password

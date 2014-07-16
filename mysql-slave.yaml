@@ -128,5 +128,9 @@ resources:
 
 outputs:
   privateIPv4:
-    description: Server IP
+    description: Server Private IP
+    value: { get_attr: [slave_server, privateIPv4] }
+
+  accessIPv4:
+    description: Server Public IP
     value: { get_attr: [slave_server, privateIPv4] }
