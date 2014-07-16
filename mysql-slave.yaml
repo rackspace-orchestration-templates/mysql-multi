@@ -133,4 +133,4 @@ outputs:
 
   accessIPv4:
     description: Server Public IP
-    value: { get_attr: [slave_server, privateIPv4] }
+    value: { get_attr: [slave_server, accessIPv4] }
