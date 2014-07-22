@@ -1,7 +1,7 @@
 schema-version: 1.0.0
 application-family: Databases
 application-name: MySQL
-application-version: latest
+application-version: 5.5
 flavor: Multiple Linux Servers running MySQL 5.5 with replication
 flavor-weight: 1
 reach-info:
