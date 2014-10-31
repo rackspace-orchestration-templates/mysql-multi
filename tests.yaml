@@ -1,9 +1,6 @@
 test-cases:
 - name: Default Build Test # Deploy using all default options
   create:
-    parameters:
-      child_template: https://raw.githubusercontent.com/brint/mysql-multi/master/mysql-slave.yaml
-      kitchen: https://github.com/brint/mysql-multi
     timeout: 30 # Deployment should complete in under 30 minutes
   resource_tests: # Tests to run on the resources themselves
     ssh_private_key: { get_output: private_key } # Fetch from output-list of stack
@@ -44,10 +41,8 @@ test-cases:
 - name: Standard Instance, Ubuntu 12.04
   create:
     parameters:
-      flavor: 2GB Standard Instance
+      flavor: 2 GB General Purpose v1
       image: Ubuntu 12.04 LTS (Precise Pangolin)
-      child_template: https://raw.githubusercontent.com/brint/mysql-multi/master/mysql-slave.yaml
-      kitchen: https://github.com/brint/mysql-multi
     timeout: 30
   resource_tests:
     ssh_private_key: { get_output: private_key }
