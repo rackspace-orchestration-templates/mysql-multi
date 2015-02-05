@@ -1,6 +1,7 @@
 from fabric.api import env, run, task
 from envassert import detect, file, group, package, port, process, service, \
     user
+from hot.utils.test import get_artifacts, http_check
 
 
 @task
@@ -21,3 +22,9 @@ def holland():
     assert package.installed("holland")
     assert package.installed("holland-mysqldump")
     assert file.exists("/etc/holland/backupsets/default.conf")
+
+
+@task
+def artifacts():
+    env.platform_family = detect.detect()
+    get_artifacts()
