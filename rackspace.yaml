@@ -38,3 +38,4 @@ instructions: |
   can be performed against any servers in this deployment. By default, all new
   and existing databases will be replicated across the members of this
   deployment.
+user-input-required: true
