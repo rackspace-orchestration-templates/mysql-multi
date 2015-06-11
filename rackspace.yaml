@@ -16,10 +16,9 @@ abstract: |
   [Holland](https://github.com/holland-backup/holland#readme).
 instructions: |
   #### Getting Started
-  If you're new to MySQL, the [Getting Started with
-  MySQL](http://dev.mysql.com/tech-resources/articles/mysql_intro.html)
-  documentation will step you through the basics of configuration, user, and
-  permission management.
+  If you're new to MySQL, the [Manual](http://dev.mysql.com/doc/refman/5.5/en/index.html)
+  documentation will step you through the basics of configuration, connecting,
+ user, and  permission management.
 
   As a part of your server configuration, your server will be configured to run
   nightly backups leveraging
