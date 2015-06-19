@@ -2,6 +2,6 @@ source "http://api.berkshelf.com"
 
 cookbook 'mysql-multi'
 cookbook 'rax-firewall',
-  :git => 'https://github.com/brint/rax-firewall-cookbook'
+  :git => 'https://github.com/heat-cookbooks/rax-firewall-cookbook'
 cookbook 'hollandbackup',
-  :git => 'https://github.com/brint/hollandbackup'
+  :git => 'https://github.com/heat-cookbooks/hollandbackup'
