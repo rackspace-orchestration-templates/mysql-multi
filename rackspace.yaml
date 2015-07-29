@@ -38,3 +38,7 @@ instructions: |
   and existing databases will be replicated across the members of this
   deployment.
 user-input-required: true
+description: |
+  Multiple Linux servers with [MySQL 5.5](http://www.mysql.com/) and
+  local database backups configured on the Master node with
+  [Holland](https://github.com/holland-backup/holland#readme).
