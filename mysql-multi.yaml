@@ -1,7 +1,9 @@
 heat_template_version: 2013-05-23
 
 description: |
-  This is a Heat template to deploy a cluster of MySQL servers.
+  Multiple Linux servers with [MySQL 5.5](http://www.mysql.com/) and
+  local database backups configured on the Master node with
+  [Holland](https://github.com/holland-backup/holland#readme).
 
 parameter_groups:
 
