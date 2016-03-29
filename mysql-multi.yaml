@@ -55,7 +55,7 @@ parameters:
     constraints:
     - allowed_values:
       - Ubuntu 12.04 LTS (Precise Pangolin) (PVHVM)
-      - Ubuntu 14.04 LTS (Trusty Tahr) (PV)
+      - Ubuntu 14.04 LTS (Trusty Tahr) (PVHVM)
       description: Must be a supported operating system.
 
   flavor:
@@ -106,7 +106,7 @@ parameters:
     label: Slave Template
     description: Template to use for all Slave Nodes
     type: string
-    default: https://raw.githubusercontent.com/rackspace-orchestration-templates/mysql-multi/master/mysql-slave.yaml
+    default: https://raw.githubusercontent.com/rackspace-orchestration-templates/mysql-multi/stable/mysql-slave.yaml
 
 resources:
   mysql_root_password:
